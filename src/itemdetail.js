@@ -47,7 +47,7 @@ export default function Itemdetail(props) {
 
   useEffect(() => {
     Axios.get(
-      `http://ddragon.leagueoflegends.com/cdn/10.2.1/data/en_US/champion/${props.match.params.champion}.json`
+      `https://ddragon.leagueoflegends.com/cdn/10.2.1/data/en_US/champion/${props.match.params.champion}.json`
     )
       .then(json => {
         setFetchData(json.data.data);
@@ -73,7 +73,7 @@ export default function Itemdetail(props) {
         <SIcon type="left" onClick={() => yadewerni("left")} />
         <SImg
           loader={<SSpin type="loading" />}
-          src={`http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${props.match.params.champion}_${fetchSkins[imgNum]}.jpg`}
+          src={`https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${props.match.params.champion}_${fetchSkins[imgNum]}.jpg`}
           alt=""
         />
         <SIcon type="right" onClick={() => yadewerni("right")} />

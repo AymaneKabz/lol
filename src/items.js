@@ -22,7 +22,7 @@ export default function Items() {
   const [pageNum, setPageNum] = useState(1);
   useEffect(() => {
     Axios.get(
-      "http://ddragon.leagueoflegends.com/cdn/10.2.1/data/en_US/champion.json"
+      "https://ddragon.leagueoflegends.com/cdn/10.2.1/data/en_US/champion.json"
     ).then(json => {
       setFetchData(Lodash.values(json.data.data));
       setSearchData(Lodash.values(json.data.data));
@@ -61,7 +61,7 @@ export default function Items() {
               <Spacing span={6} key={champion.id}>
                 <Link to={`/champions/${champion.id}`}>
                   <img
-                    src={`http://ddragon.leagueoflegends.com/cdn/10.2.1/img/champion/${champion.image.full}`}
+                    src={`https://ddragon.leagueoflegends.com/cdn/10.2.1/img/champion/${champion.image.full}`}
                     alt=""
                   />
                 </Link>
