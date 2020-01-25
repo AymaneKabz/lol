@@ -6,11 +6,9 @@ import Lodash from "lodash";
 import styled from "styled-components";
 import { Pagination } from "antd";
 import { Link } from "react-router-dom";
+import { Spacing } from "./shared.styled";
 
 export default function Items() {
-  const Spacing = styled(Col)`
-    margin-top: 2rem;
-  `;
   const SPagination = styled(Pagination)`
     margin-top: 2rem;
   `;
@@ -36,6 +34,7 @@ export default function Items() {
           champion.name.toLowerCase().includes(searchInput)
         )
       );
+      setPageNum(1);
     }
   }, [searchInput]);
 

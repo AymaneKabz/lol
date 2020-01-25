@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import styled from "styled-components";
 import "./App.css";
-import { Icon } from "antd";
-import Img from "react-image";
+import { Icon, Row } from "antd";
+import Spell from "./spell.js";
+import { SImg } from "./shared.styled";
 
 export default function Itemdetail(props) {
   const [imgNum, setImgNum] = useState(0);
@@ -26,12 +27,6 @@ export default function Itemdetail(props) {
     margin: 0 400px;
   `;
 
-  const SImg = styled(Img)`
-    height: 720px;
-    margin-top: 20px;
-    pointer-events: none;
-  `;
-
   const Sdiv = styled.div`
     display: flex;
     justify-content: center;
@@ -43,7 +38,8 @@ export default function Itemdetail(props) {
   `;
 
   const [fetchData, setFetchData] = useState(null);
-  const [fetchSkins, setFetchSkins] = useState(null);
+  const [fetchSkins, setFetchSkins] = useState([]);
+  const [fetchSpells, setFetchSpells] = useState([]);
 
   useEffect(() => {
     Axios.get(
@@ -56,15 +52,17 @@ export default function Itemdetail(props) {
             skin => skin.num
           )
         );
+        setFetchSpells(
+          json.data.data[props.match.params.champion].spells.map(spell => spell)
+        );
       })
+
       .catch(err => {
         props.history.push("/champions");
       });
   }, []);
 
-  console.log(fetchSkins);
-
-  return fetchData && fetchSkins ? (
+  return fetchData ? (
     <>
       <h1 className="App">
         This is the champion {props.match.params.champion}
@@ -78,6 +76,17 @@ export default function Itemdetail(props) {
         />
         <SIcon type="right" onClick={() => yadewerni("right")} />
       </Sdiv>
+      <h1 className="App">Spells:</h1>
+      <Row justify="center" type="flex" align="middle">
+        {fetchSpells.map(spell => (
+          <Spell
+            key={spell.id}
+            name={spell.name}
+            id={spell.id}
+            desc={spell.description}
+          />
+        ))}
+      </Row>
     </>
   ) : (
     <SSpin type="loading" />
