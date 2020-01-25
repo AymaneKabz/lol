@@ -42,7 +42,7 @@ export default function Items() {
     searchData && (
       <div className="App">
         <Input
-          style={{ width: "300px" }}
+          style={{ width: "300px", margin: "1rem" }}
           id="search"
           name="search"
           placeholder="Search"
@@ -57,7 +57,7 @@ export default function Items() {
               else return i > (pageNum - 1) * 20 && i <= pageNum * 20;
             })
             .map(champion => (
-              <Spacing span={6} key={champion.id}>
+              <Col span={6} key={champion.id}>
                 <Link to={`/champions/${champion.id}`}>
                   <img
                     src={`https://ddragon.leagueoflegends.com/cdn/10.2.1/img/champion/${champion.image.full}`}
@@ -65,7 +65,7 @@ export default function Items() {
                   />
                 </Link>
                 <h1>{champion.name}</h1>
-              </Spacing>
+              </Col>
             ))}
         </Row>
         <SPagination
