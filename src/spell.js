@@ -11,20 +11,22 @@ export default function Spell(props) {
   const content = <SDiv>{props.desc}</SDiv>;
   console.log(props);
   return (
-    <Spacing span={6}>
+    <Spacing span={2}>
       <Popover
         content={content}
         title={props.name}
         trigger="hover"
         arrowPointAtCenter
       >
-        <SImg
-          width="100px"
-          src={`http://ddragon.leagueoflegends.com/cdn/10.2.1/img/spell/${props.id}.png`}
-          alt=""
-        />
+        <div style={{ cursor: "pointer" }}>
+          <SImg
+            width="100px"
+            src={`http://ddragon.leagueoflegends.com/cdn/10.2.1/img/spell/${props.id}.png`}
+            alt=""
+          />
 
-        <h3>{props.name}</h3>
+          <h3>{props.name}</h3>
+        </div>
       </Popover>
     </Spacing>
   );
